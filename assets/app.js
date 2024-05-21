@@ -10,7 +10,7 @@ import './styles/app.css';
 console.log('This log comes from assets/app.js - welcome to AssetMapper! 🎉');
 
 
-button_profil_nav = document.querySelectorAll("div");
+// button_profil_nav = document.querySelectorAll("div");
 // console.log(button_profil_nav)
 // button_up_down = document.querySelector(".nav_up_down");
 

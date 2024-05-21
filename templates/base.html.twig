@@ -11,6 +11,7 @@
 
         {% block javascripts %}
             {% block importmap %}{{ importmap('app') }}{% endblock %}
+            <script src="{{asset('js/script.js')}}" defer></script>
         {% endblock %}
     </head>
     <body>
@@ -26,20 +27,20 @@
                 </div>
                 <nav>
                     <div class="nav_up_down">
-                        <i class="nav ri-arrow-up-wide-line"></i>
+                        <i class="ri-arrow-up-wide-line"></i>
                         <i class="nav_open ri-arrow-down-wide-line"></i>
                     </div>
                     <div class="nav_open container_profil">
                         {% if app.user %}
                             <a href="">MonProfil</a>
                             <a href="">Paramètres</a>
-                            <a href="">
+                            <a href="{{ path('app_logout') }}">
                                 <i class="ri-logout-box-r-line"></i>
                                 Déconnexion
                             </a>
                         {% else %}
-                            <a href="">Connexion</a>
-                            <a href="">S'inscrire</a>
+                            <a href="{{ path('app_login') }}"><i class="ri-login-box-line"></i> Connexion</a>
+                            <a href="{{ path('app_register') }}"><i class="ri-draft-line"></i> S'inscrire</a>
                         {% endif %}
                     </div>
                     <div class="nav_container">
@@ -98,6 +99,5 @@
 
             </footer>
         </div>
-
     </body>
 </html>
