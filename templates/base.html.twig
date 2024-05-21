@@ -2,9 +2,11 @@
 <html>
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>{% block title %}Welcome!{% endblock %}</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
         {% block stylesheets %}
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.css" integrity="sha512-OQDNdI5rpnZ0BRhhJc+btbbtnxaj+LdQFeh0V9/igiEPDiWE2fG+ZsXl0JEH+bjXKPJ3zcXqNyP4/F/NegVdZg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         {% endblock %}
 
         {% block javascripts %}
@@ -12,6 +14,90 @@
         {% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+        <div class="wrapper">
+            <header>
+                <div class="profil">
+                    {% if app.user %}
+                        
+                    {% else %}
+                        <img src="{{ asset('img/user.png') }}" alt="Image user non connecté">
+                    {% endif %}
+                    
+                </div>
+                <nav>
+                    <div class="nav_up_down">
+                        <i class="nav ri-arrow-up-wide-line"></i>
+                        <i class="nav_open ri-arrow-down-wide-line"></i>
+                    </div>
+                    <div class="nav_open container_profil">
+                        {% if app.user %}
+                            <a href="">MonProfil</a>
+                            <a href="">Paramètres</a>
+                            <a href="">
+                                <i class="ri-logout-box-r-line"></i>
+                                Déconnexion
+                            </a>
+                        {% else %}
+                            <a href="">Connexion</a>
+                            <a href="">S'inscrire</a>
+                        {% endif %}
+                    </div>
+                    <div class="nav_container">
+                        <div class="mobile nav_session">
+                            <a href="">
+                                <i class="ri-booklet-line"></i>
+                                <span>Sessions</span>
+                            </a>
+                        </div>
+                        <div class="mobile nav_categorie">
+                            <a href="">
+                                <i class="ri-organization-chart"></i>
+                                <span>Categories</span>
+                            </a>
+                        </div>
+                        <div class="mobile nav_stagiaire">
+                            <a href="">
+                                <i class="ri-graduation-cap-line"></i>
+                                <span>Stagiaires</span>
+                            </a>
+                        </div>
+                        <div class="mobile nav_formateur">
+                            <a href="">
+                                <i class="ri-user-2-line"></i>
+                                <span>Formateurs</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="info_nav nav_open">
+                        <p>salut</p>
+                    </div>
+                </nav>
+
+            </header>
+
+            <main>
+
+            {# {% if app.user %}
+                <a href="{{ path('app_logout') }}">Se déconnecter</a>
+                <a href="">MonProfil</a>
+            {% else %}
+                <a href="{{ path('app_login') }}">Se connecter</a>
+                <a href="{{ path('app_register') }}">S'enregistrer'</a>
+            {% endif %}
+    
+            {% if is_granted('ROLE_ADMIN') %}
+                <a href="">Panneau d'administration</a>
+            {% endif %} #}
+    
+            {% block body %}{% endblock %}
+
+            </main>
+
+            <footer>
+
+
+            </footer>
+        </div>
+
     </body>
 </html>
