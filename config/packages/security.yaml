@@ -20,7 +20,7 @@ security:
                 login_path: app_login
                 check_path: app_login
                 # Les 2 lignes suivantes sont utiles pour la redirection lors de l'authentification
-                default_target_path: app_home
+                default_target_path: app_admin
                 always_use_default_target_path: true
                 use_forward: false
                 enable_csrf: true

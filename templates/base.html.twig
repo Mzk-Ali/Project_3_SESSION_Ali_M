@@ -17,7 +17,7 @@
             <header>
                 <div class="profil">
                     {% if app.user %}
-                        
+                    <img src="{{ asset('img/user.png') }}" alt="Image user connecté">
                     {% else %}
                         <img src="{{ asset('img/user.png') }}" alt="Image user non connecté">
                     {% endif %}
@@ -30,7 +30,7 @@
                     </div>
                     <div class="nav_open container_profil">
                         {% if app.user %}
-                            <a href="">MonProfil</a>
+                            <a href="{{ path('app_admin') }}">Panneau d'administration</a>
                             <a href="">Paramètres</a>
                             <a href="{{ path('app_logout') }}">
                                 <i class="ri-logout-box-r-line"></i>

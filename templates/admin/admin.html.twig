@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Panneau d'aministration{% endblock %}
+
+{% block body %}
+
+    <h1>Panneau d'administration</h1>
+
+    <section class="section_panneauAdmin">
+        <a href="{{ path('app_formFormateur') }}" class="createFormateur">
+            Ajout Formateur
+        </a>
+        <a href="{{ path('app_formStagiaire') }}" class="createStagiaire">
+            Ajout Stagiaire
+        </a>
+        <a href="{{ path('app_formSession') }}" class="createSession">
+            Ajout Session
+        </a>
+    </section>
+
+{% endblock %}

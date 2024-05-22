@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajout Session{% endblock %}
+
+{% block body %}
+    {% for flash_error in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+    {% endfor %}
+
+
+    <h1>Ajout d'une Session</h1>
+
+    <section class="section_register_login">
+        {{ form_errors(formSession) }}
+
+        {{ form_start(formSession) }}
+                {{ form_row(formSession.nomSession) }}
+                {{ form_row(formSession.formateur) }}
+                {{ form_row(formSession.categorie) }}
+                {{ form_row(formSession.nbrPlace) }}
+                {{ form_row(formSession.dateStart) }}
+                {{ form_row(formSession.dateEnd) }}
+
+            <div class="form_submit">
+                <button type="submit" class="btn">Ajouter</button>
+            </div>
+        {{ form_end(formSession) }}
+    </section>
+
+
+{% endblock %}

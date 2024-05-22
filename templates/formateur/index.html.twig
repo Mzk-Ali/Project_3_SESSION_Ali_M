@@ -8,8 +8,10 @@
 
     <section class="section_listesFormateurs">
         {% for formateur in formateurs %}
-            <a href="" class="container_formateur">
-                {{ formateur.email }}
+            <a href="{{ path('app_ficheFormateur', {'id' : formateur.id} ) }}" class="container_formateur">
+                {{ formateur.email }} <hr>
+                {{ formateur.nom }} <hr>
+                {{ formateur.prenom }} <br>
             </a>
         {% endfor %}
     </section>

@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajout Formateur{% endblock %}
+
+{% block body %}
+    {% for flash_error in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+    {% endfor %}
+
+
+    <h1>Ajout d'un Formateur</h1>
+
+    <section class="section_register_login">
+        {{ form_errors(formFormateur) }}
+
+        {{ form_start(formFormateur) }}
+                {{ form_row(formFormateur.email) }}
+                {{ form_row(formFormateur.nom) }}
+                {{ form_row(formFormateur.prenom) }}
+
+            <div class="form_submit">
+                <button type="submit" class="btn">Ajouter</button>
+            </div>
+        {{ form_end(formFormateur) }}
+    </section>
+
+
+{% endblock %}

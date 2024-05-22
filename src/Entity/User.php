@@ -43,6 +43,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: Types::DATETIME_MUTABLE, options : ["default" => "CURRENT_TIMESTAMP"])]
     private ?\DateTimeInterface $dateInscription = null;
 
+    public function __construct() {
+        $this->dateInscription = new \DateTime();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
