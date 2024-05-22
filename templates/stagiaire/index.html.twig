@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Stagiaires{% endblock %}
+
+{% block body %}
+
+    <h1>Liste des Stagiaires</h1>
+
+    <section class="section_listesStagiaires">
+        {% for stagiaire in stagiaires %}
+            <a href="" class="container_stagiaire">
+                {{ stagiaire.email }}
+            </a>
+        {% endfor %}
+    </section>
+
+{% endblock %}

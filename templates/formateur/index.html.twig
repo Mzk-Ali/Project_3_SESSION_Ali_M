@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Listes des Formateurs{% endblock %}
+
+{% block body %}
+
+    <h1>Liste des Formateurs</h1>
+
+    <section class="section_listesFormateurs">
+        {% for formateur in formateurs %}
+            <a href="" class="container_formateur">
+                {{ formateur.email }}
+            </a>
+        {% endfor %}
+    </section>
+{% endblock %}

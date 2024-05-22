@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Catégorie{% endblock %}
+
+{% block body %}
+
+    <h1>Catégories</h1>
+    <section class="section_categorie">
+        {% for categorie in categories %}
+            <a href="" class="container_categorie">
+                {{ categorie.nomCategorie }}
+            </a>
+        {% endfor %}
+    </section>
+
+
+{% endblock %}

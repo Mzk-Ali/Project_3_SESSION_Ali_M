@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}HOME Session{% endblock %}
+
+{% block body %}
+
+    <h1>Bienvenue sur Session</h1>
+
+    <section class="section_listesSessions">
+        {% for session in sessions %}
+            <a href="" class="container_session">
+                {{ session.nomSession }}
+            </a>
+        {% endfor %}
+    </section>
+
+{% endblock %}

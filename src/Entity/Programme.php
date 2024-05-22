@@ -18,22 +18,16 @@ class Programme
     #[ORM\Column]
     private ?int $duree = null;
 
-    /**
-     * @var Collection<int, Session>
-     */
-    #[ORM\OneToMany(targetEntity: Session::class, mappedBy: 'programme')]
-    private Collection $sessions;
+    #[ORM\ManyToOne(inversedBy: 'programmes')]
+    private ?Session $session = null;
 
-    /**
-     * @var Collection<int, Lecon>
-     */
-    #[ORM\OneToMany(targetEntity: Lecon::class, mappedBy: 'programme')]
-    private Collection $lecons;
+    #[ORM\ManyToOne(inversedBy: 'programmes')]
+    private ?Lecon $lecon = null;
+
 
     public function __construct()
     {
-        $this->sessions = new ArrayCollection();
-        $this->lecons = new ArrayCollection();
+        
     }
 
     public function getId(): ?int
@@ -53,62 +47,26 @@ class Programme
         return $this;
     }
 
-    /**
-     * @return Collection<int, Session>
-     */
-    public function getSessions(): Collection
+    public function getSession(): ?Session
     {
-        return $this->sessions;
+        return $this->session;
     }
 
-    public function addSession(Session $session): static
+    public function setSession(?Session $session): static
     {
-        if (!$this->sessions->contains($session)) {
-            $this->sessions->add($session);
-            $session->setProgramme($this);
-        }
+        $this->session = $session;
 
         return $this;
     }
 
-    public function removeSession(Session $session): static
+    public function getLecon(): ?Lecon
     {
-        if ($this->sessions->removeElement($session)) {
-            // set the owning side to null (unless already changed)
-            if ($session->getProgramme() === $this) {
-                $session->setProgramme(null);
-            }
-        }
-
-        return $this;
+        return $this->lecon;
     }
 
-    /**
-     * @return Collection<int, Lecon>
-     */
-    public function getLecons(): Collection
+    public function setLecon(?Lecon $lecon): static
     {
-        return $this->lecons;
-    }
-
-    public function addLecon(Lecon $lecon): static
-    {
-        if (!$this->lecons->contains($lecon)) {
-            $this->lecons->add($lecon);
-            $lecon->setProgramme($this);
-        }
-
-        return $this;
-    }
-
-    public function removeLecon(Lecon $lecon): static
-    {
-        if ($this->lecons->removeElement($lecon)) {
-            // set the owning side to null (unless already changed)
-            if ($lecon->getProgramme() === $this) {
-                $lecon->setProgramme(null);
-            }
-        }
+        $this->lecon = $lecon;
 
         return $this;
     }

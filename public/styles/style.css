@@ -1,0 +1,261 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a, i{
+    text-decoration: none;
+    color: inherit;
+}
+
+ul li{
+    list-style: none;
+}
+
+:root{
+    --size-nav: 8vh;
+    --color-grey:rgb(100, 100, 108);
+    --background-nav: rgb(206, 229, 255);
+}
+
+body{
+    height: 100vh;
+}
+
+.wrapper{
+    width: 100%;
+    height: 100%;
+    background-image: url('../img/blop_background.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+header{
+    position: fixed;
+    bottom: 0;
+    background: -webkit-linear-gradient(90deg, #75a47f,#bacd92,#fcffe0);
+    background: linear-gradient(90deg, #75a47f,#bacd92,#fcffe0);
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    width: 100%;
+    z-index: 99;
+}
+
+main{
+    padding-top: 15vh;
+}
+
+h1{
+    /* margin-top: 10vh; */
+    text-align: center;
+    color: var(--color-grey);
+}
+
+
+/* ------------------------------------ NAVBAR ------------------------------------------------- */
+nav{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--color-grey);
+}
+
+nav .container_profil{
+    height: 20vh;
+    width: 100%;
+    background-color: rgba(252, 255, 224, 0.5);
+    border-radius: 30px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    font-size: 20px;
+    font-weight: bold;
+    animation : nav-up 1s forwards; 
+}
+
+.nav_up_down{
+    cursor: pointer;
+}
+
+@keyframes nav-up {
+    0% {
+        opacity:0;
+    }
+    100% {
+        opacity:1;
+    }
+}
+
+nav .container_profil a{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.nav_up_down{
+    width: 100%;
+    height: 30%;
+    display: flex;
+    justify-content: center;
+}
+
+.nav_container{
+    height: var(--size-nav);
+    width: 100%;
+    display: flex;
+    justify-content:space-around;
+    align-items: center;
+    font-size: 15px;
+}
+
+.nav_container a{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.nav_container div{
+    height: 100%;
+    width: 25%;
+}
+
+
+nav i{
+    font-size: 30px;
+    font-weight: bold;
+}
+
+nav span{
+    font-weight: bolder;
+}
+
+.nav_open{
+    display: none !important;
+}
+
+.profil{
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+    top: 0;
+    right: 0;
+    border-radius: 50%;
+    border: solid 5px rgb(186, 205, 146);
+    cursor: pointer;
+}
+.profil img{
+    width: 60px;
+    height: 60px;
+}
+
+
+
+
+
+/* ------------------------------------ Register ------------------------------------------------- */
+
+.section_register_login{
+    width: 90vw;
+    margin: 5vh auto;
+    border-radius: 30px;
+    /* background: -webkit-linear-gradient(90deg, rgba(118, 125, 141, 0.4),rgba(60, 60, 59, 0.4));
+    background: linear-gradient(90deg, rgba(118, 125, 141, 0.4),rgba(60, 60, 59, 0.4)); */
+    background-color: rgba(201, 211, 190, 0.3);
+}
+
+.section_register_login form{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 30px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+    /* backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px); */
+    border-radius: 20px;
+    border:1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+.section_register_login form div{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 5px;
+}
+
+.section_register_login form div label{
+    font-size: medium;
+    font-weight: bold;
+    color: var(--color-grey);
+}
+
+.section_register_login form div input{
+    padding: 10px;
+    font-style: italic;
+    border: none;
+}
+
+.section_register_login .form_submit{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.section_register_login .form_submit .btn{
+    color: var(--color-grey);
+    font-size: large;
+    font-weight: bolder;
+    padding: 10px 20px;
+    background-color: #bacd92af;
+    border-radius: 5px;
+    border: none;
+    border-bottom: 4px solid #75a47f;
+    cursor: pointer;
+    transition: 1s;
+}
+
+.section_register_login .form_submit .btn:hover{
+    background-color: #75a47f;
+}
+
+
+/* ------------------------------------ Categorie ------------------------------------------------- */
+
+.section_categorie{
+    width: 95vw;
+    margin: 8vh auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 40px;
+}
+
+.container_categorie{
+    background-color: rgba(226, 196, 86, 0.7);
+    border-bottom: 2px solid rgb(226, 196, 86);
+    padding: 20px 40px;
+    width: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    font-size: larger;
+    font-weight: bolder;
+    transition: 1s;
+}
+
+.container_categorie:hover{
+    background-color: rgb(226, 196, 86);
+}

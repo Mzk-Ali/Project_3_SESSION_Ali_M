@@ -40,7 +40,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 50)]
     private ?string $pseudo = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, options : ["default" => "CURRENT_TIMESTAMP"])]
     private ?\DateTimeInterface $dateInscription = null;
 
     public function getId(): ?int
