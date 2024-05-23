@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS `categorie` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table sessionalim.categorie : ~0 rows (environ)
+-- Listage des données de la table sessionalim.categorie : ~4 rows (environ)
 INSERT INTO `categorie` (`id`, `nom_categorie`) VALUES
 	(1, 'Dev WEB'),
 	(2, 'Bureautique'),
@@ -58,7 +58,7 @@ CREATE TABLE IF NOT EXISTS `lecon` (
   CONSTRAINT `FK_94E6242EBCF5E72D` FOREIGN KEY (`categorie_id`) REFERENCES `categorie` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table sessionalim.lecon : ~0 rows (environ)
+-- Listage des données de la table sessionalim.lecon : ~7 rows (environ)
 INSERT INTO `lecon` (`id`, `categorie_id`, `nom_lecon`) VALUES
 	(1, 1, 'PHP'),
 	(2, 1, 'MySQL'),
@@ -96,9 +96,12 @@ CREATE TABLE IF NOT EXISTS `programme` (
   KEY `IDX_3DDCB9FFEC1308A5` (`lecon_id`),
   CONSTRAINT `FK_3DDCB9FF613FECDF` FOREIGN KEY (`session_id`) REFERENCES `session` (`id`),
   CONSTRAINT `FK_3DDCB9FFEC1308A5` FOREIGN KEY (`lecon_id`) REFERENCES `lecon` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table sessionalim.programme : ~0 rows (environ)
+-- Listage des données de la table sessionalim.programme : ~2 rows (environ)
+INSERT INTO `programme` (`id`, `duree`, `session_id`, `lecon_id`) VALUES
+	(1, 2, 1, 1),
+	(2, 5, 1, 2);
 
 -- Listage de la structure de table sessionalim. session
 CREATE TABLE IF NOT EXISTS `session` (
@@ -114,9 +117,13 @@ CREATE TABLE IF NOT EXISTS `session` (
   KEY `IDX_D044D5D4155D8F51` (`formateur_id`),
   CONSTRAINT `FK_D044D5D4155D8F51` FOREIGN KEY (`formateur_id`) REFERENCES `formateur` (`id`),
   CONSTRAINT `FK_D044D5D4BCF5E72D` FOREIGN KEY (`categorie_id`) REFERENCES `categorie` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table sessionalim.session : ~0 rows (environ)
+-- Listage des données de la table sessionalim.session : ~3 rows (environ)
+INSERT INTO `session` (`id`, `categorie_id`, `nom_session`, `nbr_place`, `date_start`, `date_end`, `formateur_id`) VALUES
+	(1, 1, 'Initiation en PHP & SQL', 10, '2024-05-23 09:40:45', '2024-05-25 09:40:47', 2),
+	(2, 2, 'Initiation à Word & Excel', 3, '2024-05-11 08:00:00', '2024-05-17 17:00:00', 3),
+	(3, 3, 'Initiation en Comptabilité', 9, '2024-05-20 10:00:00', '2024-05-25 17:00:00', 1);
 
 -- Listage de la structure de table sessionalim. stagiaire
 CREATE TABLE IF NOT EXISTS `stagiaire` (
@@ -127,9 +134,13 @@ CREATE TABLE IF NOT EXISTS `stagiaire` (
   `date_naissance` date NOT NULL,
   `telephone` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table sessionalim.stagiaire : ~0 rows (environ)
+-- Listage des données de la table sessionalim.stagiaire : ~3 rows (environ)
+INSERT INTO `stagiaire` (`id`, `email`, `nom`, `prenom`, `date_naissance`, `telephone`) VALUES
+	(1, 'alim@stagiaire.fr', 'Marzak', 'Ali', '1997-11-30', '0122112211'),
+	(2, 'johnE@stagiaire.fr', 'Elan', 'John', '1998-05-11', '0211221122'),
+	(3, 'stephaneR@stagiaire.fr', 'Ritus', 'Stephane', '2009-01-01', '0111221122');
 
 -- Listage de la structure de table sessionalim. stagiaire_session
 CREATE TABLE IF NOT EXISTS `stagiaire_session` (
@@ -142,7 +153,13 @@ CREATE TABLE IF NOT EXISTS `stagiaire_session` (
   CONSTRAINT `FK_D32D02D4BBA93DD6` FOREIGN KEY (`stagiaire_id`) REFERENCES `stagiaire` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table sessionalim.stagiaire_session : ~0 rows (environ)
+-- Listage des données de la table sessionalim.stagiaire_session : ~5 rows (environ)
+INSERT INTO `stagiaire_session` (`stagiaire_id`, `session_id`) VALUES
+	(1, 1),
+	(1, 2),
+	(2, 1),
+	(2, 2),
+	(3, 2);
 
 -- Listage de la structure de table sessionalim. user
 CREATE TABLE IF NOT EXISTS `user` (
@@ -157,7 +174,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   UNIQUE KEY `UNIQ_IDENTIFIER_EMAIL` (`email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table sessionalim.user : ~0 rows (environ)
+-- Listage des données de la table sessionalim.user : ~1 rows (environ)
 INSERT INTO `user` (`id`, `email`, `roles`, `password`, `is_verified`, `pseudo`, `date_inscription`) VALUES
 	(1, 'admin@session.fr', '[]', '$2y$13$jEnqnAhPMmtJIkf3H2SGeubGE/DIqswalmFnjQfGIX4g2eoSbC6D.', 1, 'admin', '2024-05-22 12:42:16');
 

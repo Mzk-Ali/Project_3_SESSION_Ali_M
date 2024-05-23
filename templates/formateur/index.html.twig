@@ -12,17 +12,17 @@
                 <tr>
                     <th>Nom Prenom</th>
                     <th>Email</th>
-                    <th>Sessions gérées</th>
+                    <th>Sessions</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
                 {% for formateur in formateurs %}
                 <tr>
-                    <a href="{{ path('app_ficheFormateur', {'id' : formateur.id} ) }}" class="container_formateur_stagiaire">
-                        <td>{{ formateur.nom }} {{formateur.prenom}}</td>
-                        <td>{{ formateur.email }}</td>
-                        <td class="nbr_session">{{ formateur.sessions | length }}</td>
-                    </a>
+                    <td>{{ formateur.nom }} {{formateur.prenom}}</td>
+                    <td>{{ formateur.email }}</td>
+                    <td class="nbr_session">{{ formateur.sessions | length }}</td>
+                    <td><a href="{{ path('app_ficheFormateur', {'id' : formateur.id} ) }}" class="container_formateur_stagiaire"><i class="ri-eye-line"></i></a></td>
                 </tr>
                 {% endfor %}
             </tbody>

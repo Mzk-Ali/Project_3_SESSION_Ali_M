@@ -13,6 +13,8 @@ ul li{
     list-style: none;
 }
 
+table { border-collapse: collapse; }
+
 :root{
     --size-nav: 8vh;
     --color-grey:rgb(100, 100, 108);
@@ -51,6 +53,12 @@ h1{
     /* margin-top: 10vh; */
     text-align: center;
     color: var(--color-grey);
+}
+
+h2{
+    margin: 2vh 3vw;
+    padding-left: 10px;
+    border-left: 5px solid var(--color-grey);
 }
 
 
@@ -244,8 +252,8 @@ nav span{
 }
 
 .container_categorie{
-    background-color: rgba(226, 196, 86, 0.7);
-    border-bottom: 2px solid rgb(226, 196, 86);
+    background-color: rgba(92, 116, 59, 0.4);
+    border-bottom: 2px solid #5C743B;
     padding: 20px 40px;
     width: 200px;
     display: flex;
@@ -320,6 +328,10 @@ tbody{
 tbody .nbr_session{
     text-align: center;
 }
+
+td{
+    padding: 2px 5px;
+}
 /* .container_formateur{
     display: flex;
     justify-content: space-between;
@@ -354,8 +366,14 @@ tbody .nbr_session{
     font-weight: bold;
 }
 
-.status_session{
+.status_session_open{
     background-color: greenyellow;
+    width: 5px;
+    height: 100%;
+}
+
+.status_session_close{
+    background-color: #9C1A15;
     width: 5px;
     height: 100%;
 }
@@ -398,4 +416,194 @@ tbody .nbr_session{
 .container_info_session .details{
     background-color: #D9E997;
 }
+
+
+/* ------------------------------------ Fiche Session ------------------------------------------------- */
+
+.section_ficheSession{
+    width: 90vw;
+    margin: 8vh auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.infoSessionGenerale{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.section_ficheSession .infoFormateurCtagorie{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.section_ficheSession .infoFormateur{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: center;
+    background-color: rgba(226, 223, 210, 0.5);
+    width: 150px;
+    padding: 20px 5px;
+    border-radius: 20px;
+    /* height: 150px; */
+}
+
+.section_ficheSession .infoCategorie{
+    background-color: #FCF5E5;
+    border-radius: 10px;
+    padding: 15px 30px;
+    font-weight: bolder;
+}
+
+.section_ficheSession .infoSession{
+    background-color: rgba(226, 223, 210, 0.7);
+    /* height: 100px; */
+    border-radius: 20px;
+    padding: 10px;
+}
+
+.section_ficheSession .date_session{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 40px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    font-size: large;
+}
+
+.section_ficheSession .place_session{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    column-gap: 20px;
+    padding: 5px;
+    row-gap: 10px;
+    font-weight: 700;
+}
+
+.section_ficheSession .place_session div{
+    background-color: #bacd92;
+    border-radius: 20px;
+    border-bottom: 2px solid #75a47f;
+    padding: 10px 20px;
+}
+
+tbody .duree_lecon{
+    text-align: center;
+}
+
+td a{
+    width: 100%;
+    height: 100%;
+    font-size: 20px;
+    text-align: center;
+}
+
+td.viewFiche{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+td.delete{
+    text-align: center;
+}
+
+.ri-delete-bin-line{
+    font-weight: bolder;
+    font-size: large;
+    color: red;
+}
+
+
+
+/* ------------------------------------ Fiche Personne ------------------------------------------------- */
+
+.section_fichePersonne{
+    width: 90vw;
+    margin: 6vh auto;
+}
+
+
+.section_fichePersonne .infoFichePersonne{
+    width: 90vw;
+    margin-bottom: 5vh;
+    border-radius: 20px;
+    background-color: rgba(217, 233, 151, 0.4);
+    display: flex;
+    flex-direction: column;
+    /* gap: 20px; */
+    overflow: hidden;
+}
+
+.section_fichePersonne .infoCoordonnées{
+    width: 100%;
+    background-color: rgba(186, 205, 146, 0.5);
+    padding: 30px 70px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    font-size: larger;
+}
+
+.section_fichePersonne .infoCoordonnées div{
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.section_fichePersonne .infoCoordonnées i{
+    background-color: rgba(92, 116, 59, 0.3);
+    padding: 10px;
+    border-radius: 50%;
+}
+
+.section_fichePersonne .infoPersonne{
+    display: flex;
+    padding: 30px 40px;
+    gap: 40px;
+}
+
+.section_fichePersonne .infoPersonne .edit{
+    font-size: larger;
+}
+
+.section_fichePersonne .infoPersonne .edit i{
+    padding: 10px;
+    background-color: rgba(217, 233, 151, 0.7);
+    border-radius: 10px;
+}
+
+.section_fichePersonne .infoFiche{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+
+/* ------------------------------------ Fiche Personne ------------------------------------------------- */
+
+.section_ficheCategorie{
+    width: 85vw;
+    margin: 7vh auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.section_ficheCategorie td{
+    text-align: center;
+}
+
+.section_ficheCategorie table{
+    width: 50%;
+    margin: auto;
+}
+
 

@@ -7,7 +7,7 @@
     <h1>Catégories</h1>
     <section class="section_categorie">
         {% for categorie in categories %}
-            <a href="" class="container_categorie">
+            <a href="{{ path('app_ficheCategorie', {'id': categorie.id}) }}" class="container_categorie">
                 {{ categorie.nomCategorie }}
             </a>
         {% endfor %}

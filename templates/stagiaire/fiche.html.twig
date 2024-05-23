@@ -6,8 +6,72 @@
 
     <h1>Fiche du Stagiaire</h1>
 
-    <section class="section_ficheStagiaire">
-        {{ stagiaire.email }}
+    <section class="section_fichePersonne">
+
+        <div class="infoFichePersonne">
+            <div class="infoPersonne">
+                <div class="profilFiche">
+                    <img src="{{ asset('img/user.png') }}" alt="Image user connecté">
+                </div>
+                <div class="infoFiche">
+                    <span>{{ stagiaire }}</span>
+                    <span>Ville : Strasbourg</span>
+                </div>
+                <a href="{{ path('app_editStagiaire', {'id':stagiaire.id})}}" class="edit">
+                    <i class="ri-edit-2-line"></i>
+                </a>
+                <a href="{{ path('app_deleteStagiaire', {'id':stagiaire.id})}}" class="delete">
+                    <i class="ri-delete-bin-2-line"></i>
+                </a>
+            </div>
+            <div class="infoCoordonnées">
+                <div class="coordonnée_mail">
+                    <i class="ri-mail-send-line"></i> {{ stagiaire.email }}
+                </div>
+                <div class="coordonnée_tel">
+                    <i class="ri-phone-line"></i> {{ stagiaire.telephone }}
+                </div>
+            </div>
+        </div>
+
+        <div class="infoSession">
+            <h2>Sessions prévues</h2>
+
+            {% for session in stagiaire.sessions %}
+                <div class="container_session">
+                    <a href="{{ path('app_ficheSession', {'id': session.id}) }}">
+                        {% if (session.Stagiaires) | length < session.nbrPlace %}
+                            <div class="status_session_open"></div>
+                        {% else %}
+                            <div class="status_session_close"></div>
+                        {% endif %}
+                        <span class="title_session">
+                            {{ session.nomSession }}
+                        </span>
+                    </a>
+                    <div class="session_arrowUpDown">
+                        <i class="display_detailsSession ri-arrow-up-s-line"></i>
+                        <i class="ri-arrow-down-s-line"></i>
+                    </div>
+                </div>
+
+                <div class="display_detailsSession container_info_session">
+                    <div>
+                        Nombre de place : {{ session.nbrPlace }}
+                    </div>
+                    <div>
+                        Place réservé : {{ session.Stagiaires | length }}
+                    </div>
+                    <div>
+                        Place libre : {{ session.nbrPlace - (session.Stagiaires | length) }}
+                    </div>
+                    <div class="details">
+                        Détails
+                    </div>
+                </div>
+            {% endfor %}
+
+        </div>
     </section>
 
 {% endblock %}

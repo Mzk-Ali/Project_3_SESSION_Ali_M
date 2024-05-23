@@ -12,18 +12,18 @@
                 <tr>
                     <th>Nom Prenom</th>
                     <th>Email</th>
-                    <th>Sessions inscrits</th>
+                    <th>Sessions</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
                 {% for stagiaire in stagiaires %}
-                <tr>
-                    <a href="{{ path('app_ficheStagiaire', {'id' : stagiaire.id} ) }}" class="container_formateur_stagiaire">
+                    <tr>
                         <td>{{ stagiaire.nom }} {{stagiaire.prenom}}</td>
                         <td>{{ stagiaire.email }}</td>
                         <td class="nbr_session">{{ stagiaire.sessions | length }}</td>
-                    </a>
-                </tr>
+                        <td><a href="{{ path('app_ficheStagiaire', {'id' : stagiaire.id} ) }}" class="container_formateur_stagiaire"><i class="ri-eye-line"></i></a></td>
+                    </tr>
                 {% endfor %}
             </tbody>
         </table>

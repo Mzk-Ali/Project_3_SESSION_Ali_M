@@ -13,15 +13,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class SessionController extends AbstractController
 {
-    #[Route('/session/{id}', name: 'app_ficheSession')]
-    public function fiche(Session $session): Response
-    {
-
-        return $this->render('session/fiche.html.twig', [
-            'session' => $session,
-        ]);
-    }
-
     #[Route('/session', name: 'app_session')]
     public function index(SessionRepository $sessionRepository): Response
     {
@@ -52,6 +43,15 @@ class SessionController extends AbstractController
 
         return $this->render('session/form.html.twig', [
             'formSession' => $formSession,
+        ]);
+    }
+
+    #[Route('/session/{id}', name: 'app_ficheSession')]
+    public function fiche(Session $session): Response
+    {
+
+        return $this->render('session/fiche.html.twig', [
+            'session' => $session,
         ]);
     }
 

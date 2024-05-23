@@ -1,36 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Fiche du Formateur{% endblock %}
+{% block title %} {{ categorie}} {% endblock %}
 
 {% block body %}
 
-    <h1>Fiche du Formateur</h1>
+    <h1> {{ categorie }} </h1>
 
-    <section class="section_fichePersonne">
-        <div class="infoFichePersonne">
-            <div class="infoPersonne">
-                <div class="profilFiche">
-                    <img src="{{ asset('img/user.png') }}" alt="Image user connecté">
-                </div>
-                <div class="infoFiche">
-                    <span>{{ formateur }}</span>
-                    <span>Ville : Strasbourg</span>
-                </div>
-            </div>
-            <div class="infoCoordonnées">
-                <div class="coordonnée_mail">
-                    <i class="ri-mail-send-line"></i> {{ formateur.email }}
-                </div>
-                {# <div class="coordonnée_tel">
-                    <i class="ri-phone-line"></i> {{ formateur.telephone }}
-                </div> #}
-            </div>
-        </div>
+    <section class="section_ficheCategorie">
 
         <div class="infoSession">
             <h2>Sessions prévues</h2>
 
-            {% for session in formateur.sessions %}
+            {% for session in categorie.sessions %}
                 <div class="container_session">
                     <a href="{{ path('app_ficheSession', {'id': session.id}) }}">
                         {% if (session.Stagiaires) | length < session.nbrPlace %}
@@ -63,7 +44,24 @@
                     </div>
                 </div>
             {% endfor %}
+        </div>
 
+        <div class="infoLecon">
+            <h2>Modules présents</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Module</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for lecon in categorie.lecons %}
+                        <tr>
+                            <td>{{ lecon }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
         </div>
     </section>
 

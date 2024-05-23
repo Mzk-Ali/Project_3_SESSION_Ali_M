@@ -7,20 +7,102 @@
     <h1> {{ session.nomSession }} </h1>
 
     <section class="section_ficheSession">
-        {{ session.nomSession }}
-        {{ session.categorie }}
-        {{ session.dateStart|date("m/d/Y H:i") }}
-        {{ session.dateEnd|date("m/d/Y H:i") }}
-        {{ session.nbrPlace }}
-        {{ session.Stagiaires | length }}
-        {{ session.nbrPlace - (session.Stagiaires | length) }}
-        {% for stagiaire in session.Stagiaires %}
-            {{ stagiaire.nom }}
-        {% endfor %}
-        {% for programme in session.programmes %}
-            {{ programme.lecon }}
-            {{ programme.duree }}
-        {% endfor %}
+        <div class="infoSessionGenerale">
+            <div class="infoFormateurCtagorie">
+                <div class="infoFormateur">
+                    <div class="profilFormateur">
+                        <img src="{{ asset('img/user.png') }}" alt="Image user connecté">
+                    </div>
+                    <span><b>Formateur</b></span>
+                    <span> {{ session.formateur }} </span>
+                </div>
+                <a href="{{ path('app_ficheCategorie', {'id' : session.categorie.id} ) }}" class="infoCategorie">
+                    {{ session.categorie }}
+                </a>
+            </div>
+            <div class="infoSession">
+                <div class="date_session">
+                    <div class="dateStart">
+                        {{ session.dateStart|date("m/d/Y à H:i") }}
+                    </div>
+                    <div>
+                        <i class="ri-arrow-right-line"></i>
+                    </div>
+                    <div class="dateEnd">
+                        {{ session.dateEnd|date("m/d/Y à H:i") }}
+                    </div>
+                </div>
+                <div class="place_session">
+                    <div class="place_size">
+                        <span>Nombre de place : {{ session.nbrPlace }}</span>
+                    </div>
+                    <div class="place_reserved">
+                        <span>Place réservé : {{ session.Stagiaires | length }}</span>
+                    </div>
+                    <div class="place_free">
+                        <span>Place libre : {{ session.nbrPlace - (session.Stagiaires | length) }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="infoLecon">
+            <h2>Modules présents</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Module</th>
+                        <th>Durée</th>
+                        {% if app.user %}
+                            <th></th>
+                        {% endif %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for programme in session.programmes %}
+                        <tr>
+                            <td>{{ programme.lecon }}</td>
+                            <td class="duree_lecon">{{ programme.duree }} jours</td>
+                            {% if app.user %}
+                                <td class="delete"><a href=""><i class="ri-delete-bin-line"></i></a></td>
+                            {% endif %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <div class="addLeconInSession">
+                
+            </div>
+        </div>
+
+        <div class="infoStagiaires">
+            <h2>Stagiaires inscrits</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nom & Prénom</th>
+                        <th>Email</th>
+                        <th></th>
+                        {% if app.user %}
+                            <th></th>
+                        {% endif %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for stagiaire in session.Stagiaires %}
+                        <tr>
+                                <td>{{ stagiaire }}</td>
+                                <td>{{ stagiaire.email }}</td>
+                                <td class="viewFiche"><a href="{{ path('app_ficheStagiaire', {'id' : stagiaire.id} ) }}"><i class="ri-eye-line"></i></a></td>
+                                {% if app.user %}
+                                    <td class="delete"><a href=""><i class="ri-delete-bin-line"></i></a></td>
+                                {% endif %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
     </section>
 
 {% endblock %}

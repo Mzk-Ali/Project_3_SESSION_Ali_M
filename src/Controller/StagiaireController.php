@@ -23,19 +23,13 @@ class StagiaireController extends AbstractController
         ]);
     }
 
-
-    #[Route('/stagiaire/{$id}', name: 'app_ficheStagiaire')]
-    public function fiche(Stagiaire $stagiaire): Response
-    {
-        return $this->render('stagiaire/fiche.html.twig', [
-            'stagiaire' => $stagiaire,
-        ]);
-    }
-
     #[Route('/stagiaire/form', name: 'app_formStagiaire')]
-    public function formFormateur(Request $request, EntityManagerInterface $entityManager): Response
+    #[Route('/stagiaire/{id}/form_edit', name: 'app_editStagiaire')]
+    public function new_edit_stagiaire(Stagiaire $stagiaire = null, Request $request, EntityManagerInterface $entityManager): Response
     {
-        $stagiaire = new Stagiaire();
+        if(!$stagiaire){
+            $stagiaire = $stagiaire = new Stagiaire();
+        }
         $formStagiaire = $this->createForm(StagiaireType::class, $stagiaire);
         $formStagiaire->handleRequest($request);
 
@@ -49,6 +43,21 @@ class StagiaireController extends AbstractController
         }
         return $this->render('stagiaire/form.html.twig', [
             'formStagiaire' => $formStagiaire,
+        ]);
+    }
+
+    #[Route('/stagiaire/{id}/delete', name: 'app_deleteStagiaire')]
+    public function delete(Stagiaire $stagiaire, EntityManagerInterface $entityManager){
+        $entityManager->remove($stagiaire);
+        $entityManager->flush();
+    }
+
+
+    #[Route('/stagiaire/{id}', name: 'app_ficheStagiaire')]
+    public function fiche(Stagiaire $stagiaire): Response
+    {
+        return $this->render('stagiaire/fiche.html.twig', [
+            'stagiaire' => $stagiaire,
         ]);
     }
 }

@@ -24,13 +24,6 @@ class FormateurController extends AbstractController
         ]);
     }
 
-    #[Route('/formateur/{$id}', name: 'app_ficheFormateur')]
-    public function fiche(Formateur $formateur): Response
-    {
-        return $this->render('formateur/fiche.html.twig', [
-            'formateur' => $formateur,
-        ]);
-    }
 
     #[Route('/formateur/form', name: 'app_formFormateur')]
     public function formFormateur(Request $request, EntityManagerInterface $entityManager): Response
@@ -52,4 +45,14 @@ class FormateurController extends AbstractController
             'formFormateur' => $formFormateur,
         ]);
     }
+
+    #[Route('/formateur/{id}', name: 'app_ficheFormateur')]
+    public function fiche(Formateur $formateur): Response
+    {
+        return $this->render('formateur/fiche.html.twig', [
+            'formateur' => $formateur,
+        ]);
+    }
+
+
 }

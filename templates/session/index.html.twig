@@ -10,7 +10,11 @@
         {% for session in sessions %}
             <div class="container_session">
                 <a href="{{ path('app_ficheSession', {'id': session.id}) }}">
-                    <div class="status_session"></div>
+                    {% if (session.Stagiaires) | length < session.nbrPlace %}
+                        <div class="status_session_open"></div>
+                    {% else %}
+                        <div class="status_session_close"></div>
+                    {% endif %}
                     <span class="title_session">
                         {{ session.nomSession }}
                     </span>

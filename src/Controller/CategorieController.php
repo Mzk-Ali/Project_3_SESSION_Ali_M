@@ -19,4 +19,12 @@ class CategorieController extends AbstractController
             'categories' => $categories,
         ]);
     }
+
+    #[Route('/categorie/{id}', name: 'app_ficheCategorie')]
+    public function fiche(Categorie $categorie): Response
+    {
+        return $this->render('categorie/fiche.html.twig', [
+            'categorie' => $categorie,
+        ]);
+    }
 }
