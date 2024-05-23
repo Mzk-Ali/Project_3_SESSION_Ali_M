@@ -13,6 +13,15 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class SessionController extends AbstractController
 {
+    #[Route('/session/{id}', name: 'app_ficheSession')]
+    public function fiche(Session $session): Response
+    {
+
+        return $this->render('session/fiche.html.twig', [
+            'session' => $session,
+        ]);
+    }
+
     #[Route('/session', name: 'app_session')]
     public function index(SessionRepository $sessionRepository): Response
     {
@@ -24,24 +33,26 @@ class SessionController extends AbstractController
     }
 
 
-    #[Route('/session/{$id}', name: 'app_ficheSession')]
-    public function fiche(Session $session): Response
-    {
-        return $this->render('session/fiche.html.twig', [
-            'session' => $session,
-        ]);
-    }
-
     #[Route('/session/form', name: 'app_formSession')]
-    public function formSession(Request $request): Response
+    public function formSession(Request $request, EntityManagerInterface $entityManager): Response
     {
         $session = new Session();
         $formSession = $this->createForm(SessionType::class, $session);
         $formSession->handleRequest($request);
+
+        if ($formSession->isSubmitted() && $formSession->isValid()) {
+
+            $entityManager->persist($session);
+            $entityManager->flush();
+
+            return $this->redirectToRoute("app_formSession");
+
+        }
 
 
         return $this->render('session/form.html.twig', [
             'formSession' => $formSession,
         ]);
     }
+
 }

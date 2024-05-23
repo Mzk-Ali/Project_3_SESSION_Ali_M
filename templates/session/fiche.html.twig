@@ -8,6 +8,19 @@
 
     <section class="section_ficheSession">
         {{ session.nomSession }}
+        {{ session.categorie }}
+        {{ session.dateStart|date("m/d/Y H:i") }}
+        {{ session.dateEnd|date("m/d/Y H:i") }}
+        {{ session.nbrPlace }}
+        {{ session.Stagiaires | length }}
+        {{ session.nbrPlace - (session.Stagiaires | length) }}
+        {% for stagiaire in session.Stagiaires %}
+            {{ stagiaire.nom }}
+        {% endfor %}
+        {% for programme in session.programmes %}
+            {{ programme.lecon }}
+            {{ programme.duree }}
+        {% endfor %}
     </section>
 
 {% endblock %}

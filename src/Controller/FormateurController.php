@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Formateur;
 use App\Form\FormateurType;
+use App\Repository\SessionRepository;
 use App\Repository\FormateurRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,7 +15,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class FormateurController extends AbstractController
 {
     #[Route('/formateur', name: 'app_formateur')]
-    public function index(FormateurRepository $formateurRepository): Response
+    public function index(FormateurRepository $formateurRepository, SessionRepository $sessionRepository): Response
     {
         $formateurs = $formateurRepository->findAll();
 
@@ -42,6 +43,8 @@ class FormateurController extends AbstractController
 
             $entityManager->persist($formateur);
             $entityManager->flush();
+
+            return $this->redirectToRoute("app_formFormateur");
 
         }
 

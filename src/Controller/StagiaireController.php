@@ -44,6 +44,8 @@ class StagiaireController extends AbstractController
             $entityManager->persist($stagiaire);
             $entityManager->flush();
 
+            return $this->redirectToRoute("app_formStagiaire");
+
         }
         return $this->render('stagiaire/form.html.twig', [
             'formStagiaire' => $formStagiaire,

@@ -4,13 +4,37 @@
 
 {% block body %}
 
-    <h1>Bienvenue sur Session</h1>
+    <h1><strong>Bienvenue sur Session</strong></h1>
 
     <section class="section_listesSessions">
         {% for session in sessions %}
-            <a href="" class="container_session">
-                {{ session.nomSession }}
-            </a>
+            <div class="container_session">
+                <a href="{{ path('app_ficheSession', {'id': session.id}) }}">
+                    <div class="status_session"></div>
+                    <span class="title_session">
+                        {{ session.nomSession }}
+                    </span>
+                </a>
+                <div class="session_arrowUpDown">
+                    <i class="display_detailsSession ri-arrow-up-s-line"></i>
+                    <i class="ri-arrow-down-s-line"></i>
+                </div>
+            </div>
+
+            <div class="display_detailsSession container_info_session">
+                <div>
+                    Nombre de place : {{ session.nbrPlace }}
+                </div>
+                <div>
+                    Place réservé : {{ session.Stagiaires | length }}
+                </div>
+                <div>
+                    Place libre : {{ session.nbrPlace - (session.Stagiaires | length) }}
+                </div>
+                <div class="details">
+                    Détails
+                </div>
+            </div>
         {% endfor %}
     </section>
 

@@ -6,14 +6,28 @@
 
     <h1>Liste des Stagiaires</h1>
 
-    <section class="section_listesStagiaires">
-        {% for stagiaire in stagiaires %}
-            <a href="{{ path('app_ficheStagiaire', {'id' : stagiaire.id} ) }}" class="container_stagiaire">
-                {{ formateur.email }} <hr>
-                {{ formateur.nom }} <hr>
-                {{ formateur.prenom }} <br>
-            </a>
-        {% endfor %}
+    <section class="section_listesFormateursStagiaires">
+        <table>
+            <thead>
+                <tr>
+                    <th>Nom Prenom</th>
+                    <th>Email</th>
+                    <th>Sessions inscrits</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for stagiaire in stagiaires %}
+                <tr>
+                    <a href="{{ path('app_ficheStagiaire', {'id' : stagiaire.id} ) }}" class="container_formateur_stagiaire">
+                        <td>{{ stagiaire.nom }} {{stagiaire.prenom}}</td>
+                        <td>{{ stagiaire.email }}</td>
+                        <td class="nbr_session">{{ stagiaire.sessions | length }}</td>
+                    </a>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
     </section>
 
 {% endblock %}

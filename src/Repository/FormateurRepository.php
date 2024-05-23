@@ -2,9 +2,11 @@
 
 namespace App\Repository;
 
+use Expr\Join;
+use App\Entity\Session;
 use App\Entity\Formateur;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @extends ServiceEntityRepository<Formateur>
@@ -40,4 +42,5 @@ class FormateurRepository extends ServiceEntityRepository
     //            ->getOneOrNullResult()
     //        ;
     //    }
+
 }

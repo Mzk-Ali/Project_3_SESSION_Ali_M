@@ -90,4 +90,8 @@ class Lecon
 
         return $this;
     }
+
+    public function __toString(){
+        return $this->nomLecon;
+    }
 }

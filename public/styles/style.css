@@ -164,7 +164,7 @@ nav span{
 
 
 
-/* ------------------------------------ Register ------------------------------------------------- */
+/* ------------------------------------ Register/Login ------------------------------------------------- */
 
 .section_register_login{
     width: 90vw;
@@ -288,3 +288,114 @@ nav span{
     justify-content: center;
     align-items: center;
 }
+
+
+/* ------------------------------------ Formateur ------------------------------------------------- */
+
+.section_listesFormateursStagiaires{
+    width: 90vw;
+    margin: 8vh auto;
+    /* display: flex;
+    flex-direction: column;
+    gap: 20px; */
+}
+
+table{
+    width: 100%;
+}
+
+thead{
+    background-color:#ABEBC6;
+}
+
+
+tr{
+    height: 30px;
+}
+
+tbody{
+    background-color: #EAFAF1;
+}
+
+tbody .nbr_session{
+    text-align: center;
+}
+/* .container_formateur{
+    display: flex;
+    justify-content: space-between;
+} */
+
+
+/* ------------------------------------ Session ------------------------------------------------- */
+
+.section_listesSessions{
+    width: 90vw;
+    margin: 8vh auto;
+}
+
+.container_session{
+    background-color: rgba(233, 231, 222, 0.4);
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+    align-items: center;
+    height: 40px;
+}
+
+.container_session a{
+    width: 90%;
+    height: 100%;
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.container_session a span{
+    font-weight: bold;
+}
+
+.status_session{
+    background-color: greenyellow;
+    width: 5px;
+    height: 100%;
+}
+
+.session_arrowUpDown{
+    padding-right: 10px;
+    font-size: 25px;
+}
+
+.session_arrowUpDown i{
+    background-color: #F5FFFA;
+    border-radius: 5px;
+    /* border: solid 1px black; */
+}
+
+.display_detailsSession{
+    display: none!important;
+}
+
+.container_info_session{
+    background-color: rgba(186, 205, 146, 0.6);
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    row-gap: 20px;
+    column-gap: 20px;
+    padding: 15px;
+    font-size: smaller;
+    font-weight: bold;
+}
+
+.container_info_session div{
+    background-color: rgba(245, 255, 250, 0.5);
+    border-bottom: 2px solid #F5FFFA;
+    border-left: 2px solid #F5FFFA;
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+
+.container_info_session .details{
+    background-color: #D9E997;
+}
+

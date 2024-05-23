@@ -27,11 +27,11 @@ class SessionType extends AbstractType
             ->add('dateEnd', DateTimeType::class, [
                 'widget' => 'single_text',
             ])
-            ->add('stagiaires', EntityType::class, [
-                'class' => Stagiaire::class,
-                'choice_label' => 'id',
-                'multiple' => true,
-            ])
+            // ->add('stagiaires', EntityType::class, [
+            //     'class' => Stagiaire::class,
+            //     'choice_label' => 'id',
+            //     'multiple' => true,
+            // ])
             ->add('formateur', EntityType::class, [
                 'class' => Formateur::class,
                 // 'choice_label' => $formateur,

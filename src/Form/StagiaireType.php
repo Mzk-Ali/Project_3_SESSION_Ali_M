@@ -8,9 +8,10 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+
 
 class StagiaireType extends AbstractType
 {
@@ -20,7 +21,7 @@ class StagiaireType extends AbstractType
             ->add('email', EmailType::class)
             ->add('nom', TextType::class)
             ->add('prenom', TextType::class)
-            ->add('dateNaissance', DateTimeType::class, [
+            ->add('dateNaissance', DateType::class, [
                 'widget' => 'single_text',
             ])
             ->add('telephone', TextType::class)
