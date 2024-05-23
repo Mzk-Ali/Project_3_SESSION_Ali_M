@@ -16,6 +16,10 @@ Le projet Session inclura un système d'enregistrement et d'authentification pou
 
 <img width="215" alt="image" src="https://github.com/Mzk-Ali/Project_3_SESSION_Ali_M/assets/161448982/668dbcc0-01ad-4f24-bc7a-f4f4223904c8">
 <img width="215" alt="image" src="https://github.com/Mzk-Ali/Project_3_SESSION_Ali_M/assets/161448982/f81b36db-4886-42c0-a5a6-661574a5ae17">
+<img width="215" alt="image" src="https://github.com/Mzk-Ali/Project_3_SESSION_Ali_M/assets/161448982/a2feda79-f166-40ed-9fcc-0397cf663cf2">
+<img width="214" alt="image" src="https://github.com/Mzk-Ali/Project_3_SESSION_Ali_M/assets/161448982/735d3e6f-bc9a-482a-abd6-aac5c8961d6a">
+
+
 
 
 
