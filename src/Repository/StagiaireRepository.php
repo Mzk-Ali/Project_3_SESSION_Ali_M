@@ -2,9 +2,10 @@
 
 namespace App\Repository;
 
+use App\Entity\Session;
 use App\Entity\Stagiaire;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @extends ServiceEntityRepository<Stagiaire>
@@ -40,4 +41,23 @@ class StagiaireRepository extends ServiceEntityRepository
     //            ->getOneOrNullResult()
     //        ;
     //    }
+
+    
+    public function findStagiairesUnregistered(Session $session): array
+    {
+
+        $qb = $this->createQueryBuilder('st');
+
+        // Sous-requête
+        $subQuery = $this->createQueryBuilder('st2')
+            ->select('st2.id')
+            ->innerJoin('st2.sessions', 's')
+            ->where('s.id = :session_id')
+            ->getDQL();
+
+        $qb->where($qb->expr()->notIn('st.id', $subQuery))
+           ->setParameter('session_id', $session->getId());
+
+        return $qb->getQuery()->getResult();
+    }
 }

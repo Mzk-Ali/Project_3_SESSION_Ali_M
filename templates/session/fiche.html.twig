@@ -8,7 +8,7 @@
 
     <section class="section_ficheSession">
         <div class="infoSessionGenerale">
-            <div class="infoFormateurCtagorie">
+            <div class="infoFormateurCategorie">
                 <div class="infoFormateur">
                     <div class="profilFormateur">
                         <img src="{{ asset('img/user.png') }}" alt="Image user connecté">
@@ -43,6 +43,16 @@
                         <span>Place libre : {{ session.nbrPlace - (session.Stagiaires | length) }}</span>
                     </div>
                 </div>
+                {% if app.user %}
+                    <div class="modif_session">
+                        <a href="{{ path('app_editSession', {'id' : session.id}) }}" class="form_modif">
+                            <i class="ri-loop-right-line"></i><span>Modifier</span>
+                        </a>
+                        <a href="{{ path('app_deleteSession', {'id' : session.id}) }}" class="form_delete">
+                            <i class="ri-delete-bin-6-line"></i><span>Supprimer Session</span>
+                        </a>
+                    </div>
+                {% endif %}
             </div>
         </div>
 
@@ -64,15 +74,25 @@
                             <td>{{ programme.lecon }}</td>
                             <td class="duree_lecon">{{ programme.duree }} jours</td>
                             {% if app.user %}
-                                <td class="delete"><a href=""><i class="ri-delete-bin-line"></i></a></td>
+                                <td class="delete"><a href="{{ path('app_removeProgramme', {'id': session.id, 'programmeId' : programme.id}) }}"><i class="ri-delete-bin-line"></i></a></td>
                             {% endif %}
                         </tr>
                     {% endfor %}
                 </tbody>
             </table>
 
-            <div class="addLeconInSession">
-                
+            <div class="addProgrammeInSession">
+                {{ form_errors(formProgramme) }}
+
+                {{ form_start(formProgramme) }}
+                        {{ form_row(formProgramme.session) }}
+                        {{ form_row(formProgramme.lecon) }}
+                        {{ form_row(formProgramme.duree) }}
+        
+                    <div class="form_submit">
+                        <button type="submit" class="btn">Ajouter</button>
+                    </div>
+                {{ form_end(formProgramme) }}
             </div>
         </div>
 
@@ -94,9 +114,38 @@
                         <tr>
                                 <td>{{ stagiaire }}</td>
                                 <td>{{ stagiaire.email }}</td>
+                                <td class="viewFiche"><a href="{{ path('app_ficheStagiaire', {'id' : stagiaire.id}) }}"><i class="ri-eye-line"></i></a></td>
+                                {% if app.user %}
+                                    <td class="delete"><a href="{{ path('app_removeStagiaire', {'id': session.id, 'stagiaireId' : stagiaire.id}) }}"><i class="ri-delete-bin-line"></i></a></td>
+                                {% endif %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+
+        <div class="infoStagiaires">
+            <h2>Stagiaires non-inscrits</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nom & Prénom</th>
+                        <th>Email</th>
+                        <th></th>
+                        {% if app.user %}
+                            <th></th>
+                        {% endif %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for stagiaire in stagiaires %}
+                        <tr>
+                                <td>{{ stagiaire }}</td>
+                                <td>{{ stagiaire.email }}</td>
                                 <td class="viewFiche"><a href="{{ path('app_ficheStagiaire', {'id' : stagiaire.id} ) }}"><i class="ri-eye-line"></i></a></td>
                                 {% if app.user %}
-                                    <td class="delete"><a href=""><i class="ri-delete-bin-line"></i></a></td>
+                                    <td class="add"><a href="{{ path('app_addStagiaire', {'id': session.id, 'stagiaireId' : stagiaire.id}) }}"><i class="ri-add-circle-line"></i></a></td>
                                 {% endif %}
                         </tr>
                     {% endfor %}

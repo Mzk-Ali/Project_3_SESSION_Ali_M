@@ -17,12 +17,16 @@
                     <span>{{ stagiaire }}</span>
                     <span>Ville : Strasbourg</span>
                 </div>
-                <a href="{{ path('app_editStagiaire', {'id':stagiaire.id})}}" class="edit">
-                    <i class="ri-edit-2-line"></i>
-                </a>
-                <a href="{{ path('app_deleteStagiaire', {'id':stagiaire.id})}}" class="delete">
-                    <i class="ri-delete-bin-2-line"></i>
-                </a>
+                {% if app.user %}
+                    <div class="modifFiche">
+                        <a href="{{ path('app_editStagiaire', {'id':stagiaire.id})}}" class="edit">
+                            <i class="ri-edit-2-line"></i>
+                        </a>
+                        <a href="{{ path('app_deleteStagiaire', {'id':stagiaire.id})}}" class="delete">
+                            <i class="ri-delete-bin-2-line"></i>
+                        </a>
+                    </div>
+                {% endif %}
             </div>
             <div class="infoCoordonnées">
                 <div class="coordonnée_mail">

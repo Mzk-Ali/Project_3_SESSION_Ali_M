@@ -26,25 +26,43 @@ class FormateurController extends AbstractController
 
 
     #[Route('/formateur/form', name: 'app_formFormateur')]
-    public function formFormateur(Request $request, EntityManagerInterface $entityManager): Response
+    #[Route('/formateur/{id}/form_edit', name: 'app_editFormateur')]
+    public function new_edit_formateur(Formateur $formateur = null, Request $request, EntityManagerInterface $entityManager): Response
     {
-        $formateur = new Formateur();
+        if(!$formateur){
+            $formateur = new Formateur();
+        }
+
         $formFormateur = $this->createForm(FormateurType::class, $formateur);
         $formFormateur->handleRequest($request);
 
         if ($formFormateur->isSubmitted() && $formFormateur->isValid()) {
 
+            $formateur = $formFormateur->getData();
             $entityManager->persist($formateur);
             $entityManager->flush();
 
-            return $this->redirectToRoute("app_formFormateur");
-
+            if ($formateur->getId()) {
+                return $this->redirectToRoute("app_ficheFormateur", ['id' => $formateur->getId()]);
+            } else {
+                return $this->redirectToRoute("app_formFormateur");
+            }
         }
 
         return $this->render('formateur/form.html.twig', [
             'formFormateur' => $formFormateur,
+            'edit' => $formateur->getId()
         ]);
     }
+
+    #[Route('/formateur/{id}/delete', name: 'app_deleteFormateur')]
+    public function delete(Formateur $formateur, EntityManagerInterface $entityManager){
+        $entityManager->remove($formateur);
+        $entityManager->flush();
+
+        return $this->redirectToRoute("app_formateur");
+    }
+
 
     #[Route('/formateur/{id}', name: 'app_ficheFormateur')]
     public function fiche(Formateur $formateur): Response

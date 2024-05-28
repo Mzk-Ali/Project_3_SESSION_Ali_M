@@ -7,8 +7,12 @@
         <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
     {% endfor %}
 
-
-    <h1>Ajout d'une Session</h1>
+    {% if edit %}
+        <h1>Modification d'une Session</h1>
+    {% else %}
+        <h1>Ajout d'une Session</h1>
+    {% endif %}
+    
 
     <section class="section_register_login">
         {{ form_errors(formSession) }}
@@ -22,7 +26,11 @@
                 {{ form_row(formSession.dateEnd) }}
 
             <div class="form_submit">
-                <button type="submit" class="btn">Ajouter</button>
+                {% if edit %}
+                    <button type="submit" class="btn">Modifier</button>
+                {% else %}
+                    <button type="submit" class="btn">Ajouter</button>
+                {% endif %}
             </div>
         {{ form_end(formSession) }}
     </section>

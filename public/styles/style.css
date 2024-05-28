@@ -17,6 +17,8 @@ table { border-collapse: collapse; }
 
 :root{
     --size-nav: 8vh;
+    --size-nav-desktop : 80px;
+    --size-nav-desktop-hover : 200px;
     --color-grey:rgb(100, 100, 108);
     --background-nav: rgb(206, 229, 255);
 }
@@ -175,7 +177,7 @@ nav span{
 /* ------------------------------------ Register/Login ------------------------------------------------- */
 
 .section_register_login{
-    width: 90vw;
+    width: 90%;
     margin: 5vh auto;
     border-radius: 30px;
     /* background: -webkit-linear-gradient(90deg, rgba(118, 125, 141, 0.4),rgba(60, 60, 59, 0.4));
@@ -242,7 +244,7 @@ nav span{
 /* ------------------------------------ Categorie ------------------------------------------------- */
 
 .section_categorie{
-    width: 95vw;
+    width: 95%;
     margin: 8vh auto;
     display: flex;
     justify-content: center;
@@ -273,7 +275,7 @@ nav span{
 /* ------------------------------------ Panneau Admin ------------------------------------------------- */
 
 .section_panneauAdmin{
-    width: 90vw;
+    width: 90%;
     margin: 8vh auto;
     display: flex;
     flex-direction: column;
@@ -290,22 +292,24 @@ nav span{
     width: 250px;
     height: 100px;
     padding: 20px 40px;
-    font-size: large;
+    font-size: larger;
     font-weight: bold;
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: 0.5s;
+}
+
+.section_panneauAdmin a:hover{
+    background-color: rgba(100, 100, 108, 1);
 }
 
 
-/* ------------------------------------ Formateur ------------------------------------------------- */
+/* ------------------------------ Listes Formateur/Stagiaire ---------------------------------------- */
 
 .section_listesFormateursStagiaires{
-    width: 90vw;
+    width: 90%;
     margin: 8vh auto;
-    /* display: flex;
-    flex-direction: column;
-    gap: 20px; */
 }
 
 table{
@@ -341,7 +345,7 @@ td{
 /* ------------------------------------ Session ------------------------------------------------- */
 
 .section_listesSessions{
-    width: 90vw;
+    width: 90%;
     margin: 8vh auto;
 }
 
@@ -421,7 +425,7 @@ td{
 /* ------------------------------------ Fiche Session ------------------------------------------------- */
 
 .section_ficheSession{
-    width: 90vw;
+    width: 90%;
     margin: 8vh auto;
     display: flex;
     flex-direction: column;
@@ -434,7 +438,7 @@ td{
     gap: 20px;
 }
 
-.section_ficheSession .infoFormateurCtagorie{
+.section_ficheSession .infoFormateurCategorie{
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -455,8 +459,15 @@ td{
 .section_ficheSession .infoCategorie{
     background-color: #FCF5E5;
     border-radius: 10px;
+    border-bottom: 2px solid #ffecc1;
+    border-left: 2px solid #ffecc1;
     padding: 15px 30px;
     font-weight: bolder;
+    transition: 1s;
+}
+
+.section_ficheSession .infoCategorie:hover{
+    background-color: #ffecc1;
 }
 
 .section_ficheSession .infoSession{
@@ -493,6 +504,33 @@ td{
     padding: 10px 20px;
 }
 
+.section_ficheSession .modif_session{
+    display: flex;
+    justify-content:space-around;
+    align-items: center;
+    margin: 2vh auto;
+}
+
+.section_ficheSession .form_modif, .section_ficheSession .form_delete{
+    border-radius: 10px;
+    padding: 10px 20px;
+    display: flex;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.section_ficheSession .form_modif{
+    font-weight: bold;
+    background-color: rgba(210, 233, 248, 0.3);
+    color: #4ca7e3;
+}
+
+.section_ficheSession .form_delete{
+    background-color: rgba(255, 204, 204, 0.3);
+    color: #ff3333;
+    font-weight: bolder;
+}
+
 tbody .duree_lecon{
     text-align: center;
 }
@@ -510,9 +548,10 @@ td.viewFiche{
     align-items: center;
 }
 
-td.delete{
+td.delete, td.add{
     text-align: center;
 }
+
 
 .ri-delete-bin-line{
     font-weight: bolder;
@@ -520,18 +559,22 @@ td.delete{
     color: red;
 }
 
+.ri-add-circle-line{
+    color: blue;
+}
+
 
 
 /* ------------------------------------ Fiche Personne ------------------------------------------------- */
 
 .section_fichePersonne{
-    width: 90vw;
+    width: 90%;
     margin: 6vh auto;
 }
 
 
 .section_fichePersonne .infoFichePersonne{
-    width: 90vw;
+    /* width: 90%; */
     margin-bottom: 5vh;
     border-radius: 20px;
     background-color: rgba(217, 233, 151, 0.4);
@@ -565,18 +608,25 @@ td.delete{
 
 .section_fichePersonne .infoPersonne{
     display: flex;
-    padding: 30px 40px;
-    gap: 40px;
+    padding: 20px 20px 30px 40px;
+    justify-content: space-between;
 }
 
-.section_fichePersonne .infoPersonne .edit{
+.section_fichePersonne .infoPersonne .modifFiche{
+    display: flex;
+    gap: 10px;
+    align-items: start;
+}
+
+.section_fichePersonne .infoPersonne .edit, .section_fichePersonne .infoPersonne .delete{
     font-size: larger;
-}
-
-.section_fichePersonne .infoPersonne .edit i{
-    padding: 10px;
+    padding: 7px; 
     background-color: rgba(217, 233, 151, 0.7);
     border-radius: 10px;
+}
+
+.section_fichePersonne .infoPersonne .delete{
+    color: red;
 }
 
 .section_fichePersonne .infoFiche{
@@ -587,10 +637,10 @@ td.delete{
 
 
 
-/* ------------------------------------ Fiche Personne ------------------------------------------------- */
+/* ------------------------------------ Fiche Categorie ------------------------------------------------- */
 
 .section_ficheCategorie{
-    width: 85vw;
+    width: 85%;
     margin: 7vh auto;
     display: flex;
     flex-direction: column;
@@ -606,4 +656,132 @@ td.delete{
     margin: auto;
 }
 
+
+
+
+/* ------------------------------------ Media screen ------------------------------------------------- */
+/* --------------------------------------------------------------------------------------------------- */
+
+@media screen and (min-width:1025px){
+    .wrapper{
+        display: flex;
+        justify-content: space-between;
+    }
+
+    header{
+        position: unset;
+        margin: 100px 40px;
+        width: unset;
+        border-radius: 30px;
+    }
+
+    .nav_hover_desktop{
+        display: none;
+    }
+
+    .desktop{
+        display: none;
+    }
+
+    .nav_container{
+        flex-direction: column;
+        height: 400px;
+    }
+
+    main{
+        width: 80vw;
+        padding: 10vh 0;
+    }
+
+    nav{
+        height: unset;
+    }
+
+    .nav_container div{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+    }
+
+    .nav_container div:hover span{
+        background-color: rgba(249, 246, 238, 0.3);
+        padding: 5px 10px;
+        border-radius: 10px;
+    }
+
+    .nav_container a{
+        flex-direction: row;
+        width: 100%;
+        height: unset;
+        padding: 0 30px;
+        gap: 20px;
+        
+    }
+
+    .nav_container a span{
+        font-size: larger;
+        transition: 1s;
+    }
+
+
+    nav .container_profil{
+        position: absolute;
+        right: 0;
+        top: 100px;
+        width: 400px;
+        background: linear-gradient(90deg, rgba(117, 164, 127, 0.4),rgba(186, 205, 146, 0.7),#fcffe0);
+    }
+
+    .section_register_login{
+        width: 500px;
+        margin: 10vh auto;
+    }
+
+
+    /* Fiche Session */
+    .infoSessionGenerale{
+        flex-direction: row;
+        justify-content: space-around;
+    }
+
+    .infoSessionGenerale .infoFormateurCategorie{
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    /* Fiche Personne */
+    .section_fichePersonne .infoFichePersonne{
+        flex-direction: row;
+    }
+
+    .infoFichePersonne .infoPersonne{
+        width: 500px;
+        justify-content: center;
+        gap: 40px;
+    }
+
+    .infoFichePersonne .infoPersonne .profilFiche{
+        display: flex;
+        align-items: center;
+    }
+
+    nav .container_profil a{
+        padding: 7px 14px;
+        border-radius: 20px;
+        transition: 0.5s;
+    }
+
+    nav .container_profil a:hover{
+        background-color: rgba(249, 246, 238, 0.8);
+    }
+
+}
+
+@media screen and (min-width:1200px){
+    .nav_container:hover .nav_hover_desktop{
+        display: block;
+    }
+}
 

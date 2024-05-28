@@ -28,21 +28,25 @@ class StagiaireController extends AbstractController
     public function new_edit_stagiaire(Stagiaire $stagiaire = null, Request $request, EntityManagerInterface $entityManager): Response
     {
         if(!$stagiaire){
-            $stagiaire = $stagiaire = new Stagiaire();
+            $stagiaire = new Stagiaire();
         }
         $formStagiaire = $this->createForm(StagiaireType::class, $stagiaire);
         $formStagiaire->handleRequest($request);
 
         if ($formStagiaire->isSubmitted() && $formStagiaire->isValid()) {
-
+            $stagiaire = $formStagiaire->getData();
             $entityManager->persist($stagiaire);
             $entityManager->flush();
-
-            return $this->redirectToRoute("app_formStagiaire");
-
+            
+            if ($stagiaire->getId()) {
+                return $this->redirectToRoute("app_ficheStagiaire", ['id' => $stagiaire->getId()]);
+            } else {
+                return $this->redirectToRoute("app_formStagiaire");
+            }
         }
         return $this->render('stagiaire/form.html.twig', [
             'formStagiaire' => $formStagiaire,
+            'edit' => $stagiaire->getId()
         ]);
     }
 
@@ -50,6 +54,8 @@ class StagiaireController extends AbstractController
     public function delete(Stagiaire $stagiaire, EntityManagerInterface $entityManager){
         $entityManager->remove($stagiaire);
         $entityManager->flush();
+
+        return $this->redirectToRoute("app_stagiaire");
     }
 
 
