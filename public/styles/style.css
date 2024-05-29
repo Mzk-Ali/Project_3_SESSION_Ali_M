@@ -453,7 +453,11 @@ td{
     width: 150px;
     padding: 20px 5px;
     border-radius: 20px;
-    /* height: 150px; */
+    transition: 0.5s;
+}
+
+.section_ficheSession .infoFormateur:hover{
+    background-color: rgba(226, 223, 210, 1);
 }
 
 .section_ficheSession .infoCategorie{
@@ -523,13 +527,71 @@ td{
     font-weight: bold;
     background-color: rgba(210, 233, 248, 0.3);
     color: #4ca7e3;
+    border-bottom: 2px solid rgb(76, 167, 227);
+    border-left: 1px solid rgb(76, 167, 227);
+    transition: 0.5s;
+}
+
+.section_ficheSession .form_modif:hover{
+    background-color: rgba(210, 233, 248, 1);
 }
 
 .section_ficheSession .form_delete{
     background-color: rgba(255, 204, 204, 0.3);
     color: #ff3333;
+    border-bottom: 2px solid #ff3333;
+    border-left: 1px solid #ff3333;
     font-weight: bolder;
+    transition: 0.5s;
 }
+
+.section_ficheSession .form_delete:hover{
+    background-color: rgba(255, 204, 204, 1);
+}
+
+.addProgrammeInSession{
+    border: dashed 1px var(--color-grey);
+    border-radius: 20px;
+    padding: 20px;
+    margin: 2vh auto;
+}
+
+.addProgrammeInSession .form_addProgramme{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.addProgrammeInSession .form_addProgramme select, .addProgrammeInSession .form_addProgramme input{
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.addProgrammeInSession .form_submit{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1vh;
+}
+
+.addProgrammeInSession .form_submit .btn{
+    padding: 10px 20px;
+    border-radius: 10px;
+    background-color: rgba(210, 233, 248, 0.3);
+    color:#4ca7e3;
+    border: none;
+    font-weight: bolder;
+    font-size: medium;
+    border-bottom: 2px solid rgb(76, 167, 227);
+    border-left: 1px solid rgb(76, 167, 227);
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.addProgrammeInSession .form_submit .btn:hover{
+    background-color: rgba(210, 233, 248, 1);
+}
+
 
 tbody .duree_lecon{
     text-align: center;
@@ -621,8 +683,13 @@ td.delete, td.add{
 .section_fichePersonne .infoPersonne .edit, .section_fichePersonne .infoPersonne .delete{
     font-size: larger;
     padding: 7px; 
-    background-color: rgba(217, 233, 151, 0.7);
+    background-color: rgba(217, 233, 151, 0.5);
     border-radius: 10px;
+    transition: 0.5s;
+}
+
+.section_fichePersonne .infoPersonne .edit:hover, .section_fichePersonne .infoPersonne .delete:hover{
+    background-color: rgba(217, 233, 151, 1);
 }
 
 .section_fichePersonne .infoPersonne .delete{
@@ -673,6 +740,7 @@ td.delete, td.add{
         margin: 100px 40px;
         width: unset;
         border-radius: 30px;
+        height: 500px;
     }
 
     .nav_hover_desktop{

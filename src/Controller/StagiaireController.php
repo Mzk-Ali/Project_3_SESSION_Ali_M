@@ -7,6 +7,7 @@ use App\Form\StagiaireType;
 use App\Repository\StagiaireRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
+use MercurySeries\FlashyBundle\FlashyNotifier;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -25,7 +26,7 @@ class StagiaireController extends AbstractController
 
     #[Route('/stagiaire/form', name: 'app_formStagiaire')]
     #[Route('/stagiaire/{id}/form_edit', name: 'app_editStagiaire')]
-    public function new_edit_stagiaire(Stagiaire $stagiaire = null, Request $request, EntityManagerInterface $entityManager): Response
+    public function new_edit_stagiaire(FlashyNotifier $flashy, Stagiaire $stagiaire = null, Request $request, EntityManagerInterface $entityManager): Response
     {
         if(!$stagiaire){
             $stagiaire = new Stagiaire();
@@ -34,15 +35,35 @@ class StagiaireController extends AbstractController
         $formStagiaire->handleRequest($request);
 
         if ($formStagiaire->isSubmitted() && $formStagiaire->isValid()) {
-            $stagiaire = $formStagiaire->getData();
-            $entityManager->persist($stagiaire);
-            $entityManager->flush();
-            
-            if ($stagiaire->getId()) {
-                return $this->redirectToRoute("app_ficheStagiaire", ['id' => $stagiaire->getId()]);
-            } else {
-                return $this->redirectToRoute("app_formStagiaire");
+            try{
+                $stagiaire = $formStagiaire->getData();
+                $entityManager->persist($stagiaire);
+                $entityManager->flush();
+    
+                if ($stagiaire->getId()) {
+                    $flashy->success("Le profil du stagiaire $stagiaire a été modifé");
+
+                    return $this->redirectToRoute("app_ficheStagiaire", ['id' => $stagiaire->getId()]);
+                } else {
+                    $flashy->success("Le stagiaire a été ajouté");
+
+                    return $this->redirectToRoute("app_formStagiaire");
+                }
+    
             }
+            catch (\Exception $e){
+
+                if ($stagiaire->getId()) {
+                    $flashy->error("Un problème est survenu lors de la modification du profil du stagiaire $stagiaire");
+
+                    return $this->redirectToRoute("app_ficheStagiaire", ['id' => $stagiaire->getId()]);
+                } else {
+                    $flashy->error("Un problème est survenu lors de l'ajout du stagiaire");
+
+                    return $this->redirectToRoute("app_formStagiaire");
+                }
+            }
+
         }
         return $this->render('stagiaire/form.html.twig', [
             'formStagiaire' => $formStagiaire,
@@ -52,8 +73,16 @@ class StagiaireController extends AbstractController
 
     #[Route('/stagiaire/{id}/delete', name: 'app_deleteStagiaire')]
     public function delete(Stagiaire $stagiaire, EntityManagerInterface $entityManager){
-        $entityManager->remove($stagiaire);
-        $entityManager->flush();
+
+        try{
+            $entityManager->remove($stagiaire);
+            $entityManager->flush();  
+
+            $flashy->success("Le stagiaire $stagiaire a été supprimé");
+        }
+        catch (\Exception $e){
+            $flashy->error("Un problème est survenu lors de la suppression du stagiaire $stagiaire");
+        }
 
         return $this->redirectToRoute("app_stagiaire");
     }

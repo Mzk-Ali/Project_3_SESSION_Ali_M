@@ -9,13 +9,13 @@
     <section class="section_ficheSession">
         <div class="infoSessionGenerale">
             <div class="infoFormateurCategorie">
-                <div class="infoFormateur">
+                <a href="{{ path('app_ficheFormateur', {'id' : session.formateur.id}) }}" class="infoFormateur">
                     <div class="profilFormateur">
                         <img src="{{ asset('img/user.png') }}" alt="Image user connecté">
                     </div>
                     <span><b>Formateur</b></span>
                     <span> {{ session.formateur }} </span>
-                </div>
+                </a>
                 <a href="{{ path('app_ficheCategorie', {'id' : session.categorie.id} ) }}" class="infoCategorie">
                     {{ session.categorie }}
                 </a>
@@ -81,19 +81,23 @@
                 </tbody>
             </table>
 
-            <div class="addProgrammeInSession">
-                {{ form_errors(formProgramme) }}
+            {% if app.user %}
+                <div class="addProgrammeInSession">
+                    {{ form_errors(formProgramme) }}
 
-                {{ form_start(formProgramme) }}
-                        {{ form_row(formProgramme.session) }}
-                        {{ form_row(formProgramme.lecon) }}
-                        {{ form_row(formProgramme.duree) }}
-        
-                    <div class="form_submit">
-                        <button type="submit" class="btn">Ajouter</button>
-                    </div>
-                {{ form_end(formProgramme) }}
-            </div>
+                    {{ form_start(formProgramme) }}
+                        <div class="form_addProgramme">
+                            {# {{ form_row(formProgramme.session) }} #}
+                            {{ form_widget(formProgramme.lecon) }}
+                            {{ form_widget(formProgramme.duree) }}
+                        </div>
+
+                        <div class="form_submit">
+                            <button type="submit" class="btn">Ajouter</button>
+                        </div>
+                    {{ form_end(formProgramme) }}
+                </div>
+            {% endif %}
         </div>
 
         <div class="infoStagiaires">

@@ -7,6 +7,7 @@
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
         {% block stylesheets %}
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.css" integrity="sha512-OQDNdI5rpnZ0BRhhJc+btbbtnxaj+LdQFeh0V9/igiEPDiWE2fG+ZsXl0JEH+bjXKPJ3zcXqNyP4/F/NegVdZg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <link rel="stylesheet" href="/bundles/mercuryseriesflashy/css/flashy.css">
             <link rel="stylesheet" href="{{asset('styles/style.css')}}">
         {% endblock %}
 
@@ -73,17 +74,6 @@
 
             <main>
 
-            {# {% if app.user %}
-                <a href="{{ path('app_logout') }}">Se déconnecter</a>
-                <a href="">MonProfil</a>
-            {% else %}
-                <a href="{{ path('app_login') }}">Se connecter</a>
-                <a href="{{ path('app_register') }}">S'enregistrer'</a>
-            {% endif %}
-    
-            {% if is_granted('ROLE_ADMIN') %}
-                <a href="">Panneau d'administration</a>
-            {% endif %} #}
     
             {% block body %}{% endblock %}
 
@@ -96,8 +86,11 @@
         </div>
 
         {% block javascripts %}
-            {% block importmap %}{{ importmap('app') }}{% endblock %}
+            <script src="//code.jquery.com/jquery.js"></script>
+            <script src="/bundles/mercuryseriesflashy/js/flashy.js"></script>
+            {# {% block importmap %}{{ importmap('app') }}{% endblock %} #}
             <script src="{{asset('js/script.js')}}" defer></script>
         {% endblock %}
+        {{ include('@MercurySeriesFlashy/flashy.html.twig') }}
     </body>
 </html>

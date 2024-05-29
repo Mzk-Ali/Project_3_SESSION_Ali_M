@@ -16,11 +16,13 @@ class ProgrammeType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('duree', IntegerType::class)
-            ->add('session', EntityType::class, [
-                'class' => Session::class,
-                'choice_label' => 'id',
+            ->add('duree', IntegerType::class, [
+                'attr' => ['placeholder' => 'Durée de Lecon (en jours)']
             ])
+            // ->add('session', EntityType::class, [
+            //     'class' => Session::class,
+            //     'choice_label' => 'id',
+            // ])
             ->add('lecon', EntityType::class, [
                 'class' => Lecon::class,
                 // 'choice_label' => 'nomLecon',
@@ -30,8 +32,8 @@ class ProgrammeType extends AbstractType
 
     public function configureOptions(OptionsResolver $resolver): void
     {
-        $resolver->setDefaults([
-            'data_class' => Programme::class,
-        ]);
+        // $resolver->setDefaults([
+        //     'data_class' => Programme::class,
+        // ]);
     }
 }
